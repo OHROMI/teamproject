@@ -3,8 +3,8 @@ import pandas as pd
 import plotly.express as px
 
 # CSV 파일 불러오기
-gu_dong_df = pd.read_csv("행정구역(동별).csv")
-bike_df = pd.read_csv("따릉이 이용내역_20250607.csv")
+gu_dong_df = pd.read_csv("행정구역(동별).csv", encoding='cp949')
+bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='cp949')
 
 # 동 -> 자치구 매핑 사전 생성
 dong_to_gu = dict(zip(gu_dong_df['동'], gu_dong_df['자치구']))
