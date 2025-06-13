@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.title("서울시 자치구별 시간대별 따릉이 대여 현황 (2025-06-07)")
+st.title("자치구별 시간대별 따릉이 대여 현황 (25-06-07)")
 
 # -------------------
 # 1. CSV 불러오기
