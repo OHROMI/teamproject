@@ -59,7 +59,7 @@ fig = px.bar(
     hourly_usage,
     x='시간대',
     y='대여횟수',
-    title=f"{selected_gu} 시간대별 따릉이 대여 횟수",
+    title=f"🗺️{selected_gu} 시간대별 따릉이 대여 횟수",
     labels={'시간대': '대여 시각 (시)', '대여횟수': '이용 횟수'},
     color='대여횟수',
     color_continuous_scale='Blues'
@@ -122,7 +122,7 @@ fig = px.bar(
     y='대여횟수',
     color='자치구',
     barmode='group',
-    title='시간대별 자치구별 따릉이 대여 현황',
+    title='⏱️시간대별 자치구별 따릉이 대여 현황',
     labels={'대여시간대': '대여 시각 (시)', '대여횟수': '이용 횟수'}
 )
 
