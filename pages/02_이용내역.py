@@ -15,9 +15,9 @@ except:
 
 # 따릉이 이용내역 파일
 try:
-    bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='utf-8')
+    bike_df = pd.read_csv("따릉이_샘플_10000.csv", encoding='utf-8')
 except:
-    bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='utf-8')
+    bike_df = pd.read_csv("따릉이+샘플_10000.csv", encoding='utf-8')
 
 # -------------------
 # 2. 열 이름 자동 추출
