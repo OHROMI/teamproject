@@ -72,7 +72,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-st.title("시간대별 자치구별 따릉이 대여 현황 (2025-06-07 기준)")
+st.title("⏱️시간대별 자치구별 따릉이 대여 현황 (2025-06-07 기준)")
 
 # -------------------
 # 1. CSV 불러오기
@@ -122,7 +122,7 @@ fig = px.bar(
     y='대여횟수',
     color='자치구',
     barmode='group',
-    title='⏱️시간대별 자치구별 따릉이 대여 현황',
+    title='⏱️🧮시간대별 자치구별 따릉이 대여 현황',
     labels={'대여시간대': '대여 시각 (시)', '대여횟수': '이용 횟수'}
 )
 
