@@ -1,37 +1,43 @@
 import streamlit as st
 import pandas as pd
-import plotly as plt
+import plotly.express as px
 
-# 파일 업로드
-st.title("서울시 따릉이 이용 현황 (자치구 기준 시각화)")
+# CSV 파일 불러오기
+gu_dong_df = pd.read_csv("행정구역(동별).csv")
+bike_df = pd.read_csv("따릉이 이용내역_20250607.csv")
 
-# 데이터 불러오기
-bike_file = '따릉이 이용내역_20250607.csv'
-dong_file = '행정구역(동별).csv'
+# 동 -> 자치구 매핑 사전 생성
+dong_to_gu = dict(zip(gu_dong_df['동'], gu_dong_df['자치구']))
 
-# 따릉이 이용내역 불러오기
-bike_df = pd.read_csv(bike_file)
+# E열에서 동 이름 추출 (예: "신사동_101" -> "신사동")
+e_col = bike_df.columns[4]  # E열
+bike_df['대여_동'] = bike_df[e_col].astype(str).str.split('_').str[0]
 
-# 행정구역 데이터 불러오기
-dong_df = pd.read_csv(dong_file)
+# 동 이름을 자치구로 매핑
+bike_df['대여_자치구'] = bike_df['대여_동'].map(dong_to_gu)
 
-# 1. 따릉이 데이터에서 대여소 위치 동 이름 추출 (E열 기준)
-bike_df['동이름'] = bike_df.iloc[:, 4].str.split('_').str[0]
+# 자치구별 대여 횟수 집계
+gu_counts = bike_df['대여_자치구'].value_counts().reset_index()
+gu_counts.columns = ['자치구', '대여 횟수']
 
-# 2. 동 → 자치구 매핑 (dong_df에는 '자치구', '행정동' 컬럼이 있다고 가정)
-dong_to_gu = dict(zip(dong_df['행정동'], dong_df['자치구']))
+# Streamlit 앱 UI
+st.title("📊 서울시 자치구별 따릉이 대여 횟수 (2025년 6월 7일)")
 
-# 3. 따릉이 데이터에 자치구 정보 추가
-bike_df['자치구'] = bike_df['동이름'].map(dong_to_gu)
+# Plotly 막대 그래프
+fig = px.bar(
+    gu_counts,
+    x='자치구',
+    y='대여 횟수',
+    title='자치구별 따릉이 대여 횟수',
+    labels={'대여 횟수': '이용 횟수'},
+    color='대여 횟수',
+    color_continuous_scale='Viridis',
+)
 
-# 4. 자치구별 이용 건수 집계
-gu_usage = bike_df['자치구'].value_counts().sort_values(ascending=False)
+fig.update_layout(xaxis_title='자치구', yaxis_title='대여 횟수')
 
-# 5. 시각화
-st.subheader("자치구별 따릉이 이용 횟수")
-fig, ax = plt.subplots(figsize=(10, 6))
-gu_usage.plot(kind='bar', ax=ax, color='skyblue')
-ax.set_xlabel("자치구")
-ax.set_ylabel("이용 횟수")
-ax.set_title("2025년 6월 7일 기준 자치구별 따릉이 이용 횟수")
-st.pyplot(fig)
+st.plotly_chart(fig)
+
+# 데이터 테이블 표시
+st.subheader("📋 자치구별 대여 횟수 데이터")
+st.dataframe(gu_counts)
