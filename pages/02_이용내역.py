@@ -11,13 +11,13 @@ st.title("자치구별 시간대별 따릉이 대여 현황 (25-06-07)")
 try:
     dong_df = pd.read_csv("행정구역(동별).csv", encoding='utf-8')
 except:
-    dong_df = pd.read_csv("행정구역(동별).csv", encoding='euc-kr')
+    dong_df = pd.read_csv("행정구역(동별).csv", encoding='utf-8')
 
 # 따릉이 이용내역 파일
 try:
     bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='utf-8')
 except:
-    bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='euc-kr')
+    bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='utf-8')
 
 # -------------------
 # 2. 열 이름 자동 추출
