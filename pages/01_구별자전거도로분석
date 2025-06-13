@@ -108,5 +108,3 @@ folium.GeoJson(
 
 # 지도 출력
 st_folium(m, width=800, height=600)
-
-
