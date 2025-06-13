@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly as plt
 
 # 파일 업로드
 st.title("서울시 따릉이 이용 현황 (자치구 기준 시각화)")
