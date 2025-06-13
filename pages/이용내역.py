@@ -7,7 +7,7 @@ st.title("서울시 따릉이 이용 현황 (자치구 기준 시각화)")
 
 # 데이터 불러오기
 bike_file = '따릉이 이용내역_20250607.csv'
-dong_file = '행정구역(동별)_20250612184825.csv'
+dong_file = '행정구역(동별).csv'
 
 # 따릉이 이용내역 불러오기
 bike_df = pd.read_csv(bike_file)
