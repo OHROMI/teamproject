@@ -11,13 +11,13 @@ st.title("서울시 자치구별 시간대별 따릉이 대여 현황 (2025-06-0
 try:
     dong_df = pd.read_csv("행정구역(동별).csv", encoding='utf-8')
 except:
-    dong_df = pd.read_csv("행정구역(동별).csv", encoding='euc-kr')
+    dong_df = pd.read_csv("행정구역(동별).csv", encoding='utf-8')
 
 # 따릉이 이용내역
 try:
-    bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='utf-8')
+    bike_df = pd.read_csv("따릉이_샘플_1000.csv", encoding='utf-8')
 except:
-    bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='euc-kr')
+    bike_df = pd.read_csv("따릉이_샘플_1000.csv", encoding='utf-8')
 
 # -------------------
 # 2. 자치구 매핑
