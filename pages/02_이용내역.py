@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# CSV 파일 불러오기
+# CSV 파일 불러오기 (cp949로 인코딩 지정)
 gu_dong_df = pd.read_csv("행정구역(동별).csv", encoding='cp949')
 bike_df = pd.read_csv("따릉이 이용내역_20250607.csv", encoding='cp949')
 
